@@ -1,5 +1,5 @@
 from os import system
-
+from utils.check_password import check_pass
 
 
 def register_student() -> dict | None:
@@ -15,25 +15,31 @@ def register_student() -> dict | None:
     while True:
         name = input("Enter your name: ")
         email = input("Enter your email: ")
+
+        print("\nPassword must be:\n\tspecial characters,\n\tnumbers,\n\tupper/lowwer letters,\n\tlength > 7\n")
+
         password = input("Enter your password: ")
         confirm_password = input("Confirm your password: ")
 
-        if password == confirm_password:
-            data = {
-                "id": "id",
-                "name": name,
-                "email": email,
-                "password": password,
-                "courses": []
-            }
+        if check_pass(password) and ("@" and "." in email) :
+            if password == confirm_password:
+                data = {
+                    "id": "id",
+                    "name": name,
+                    "email": email,
+                    "password": password,
+                    "courses": []
+                }
 
-            system('clear')
-            print("\nYou successfully registered!")
+                system('clear')
+                print("\nYou successfully registered!")
 
-            return data
+                return data
 
-        print("Your passwords did not match. Please try again!")
-    
+            print("Your passwords did not match. Please try again!")
+
+        print("Invalid password or email.")
+            
 def login_student(
         students_data: list[dict],
     ) -> dict | None:
@@ -71,7 +77,7 @@ def logout() -> None:
 def enroll_in_course(
     courses_data: list[dict[str, str]], 
     user: dict[str, dict[str, list[str]]],
-) -> None:
+) -> dict | None:
     """
     Allows a student to enroll in a course by selecting from the available courses. 
     The selected course is added to the student's list of enrolled courses.
@@ -82,4 +88,9 @@ def enroll_in_course(
                                and their details (including enrolled courses) are stored as values.
         student_email (str): The email of the student who is enrolling.
     """
-    
+    index = int(input("Enter course id: "))
+
+    for course in courses_data:
+        if course["id"] == index:
+            return course
+        

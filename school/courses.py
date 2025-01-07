@@ -14,6 +14,7 @@ def view_courses(courses_data: list[dict[str, str]]) -> None:
     system('clear')
     print("\nCourses:")
     for course in courses_data:
+        print("id:",course["id"])
         print(
             "-"*30,
             courses.format(

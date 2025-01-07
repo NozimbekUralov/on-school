@@ -25,13 +25,12 @@ def main() -> None:
     to interact with courses and check grades.
     """
 
-    user = {}
+    user = {"id": 1, "name": "nozim", "email": "n@e.c", "password": "12", "courses": []}
 
 
     students_data = [
         {"id": 0, "name": "John", "email": "email@example.com", "password": "12345678", "courses": []},
-        {"id": 1, "name": "nozim", "email": "n@e.c", "password": "12345678", "courses": []},
-        
+        {"id": 1, "name": "nozim", "email": "n@e.c", "password": "12", "courses": []},  
     ]
 
     courses_data = [
@@ -40,7 +39,8 @@ def main() -> None:
     ]
 
     grades_data = [
-        {"id": 1, "course_name": "Data scinece 101", "grade": 100, "student": "email@example.com"}
+        {"id": 1, "course_name": "Data scinece 101", "grade": 100, "student": "email@example.com"},
+        {"id": 1, "course_name": "Data scinece 101", "grade": 100, "student": "n@e.c"}
     ]
 
     menu = [
@@ -86,9 +86,10 @@ def main() -> None:
             if choice == "1":
                 view_courses(courses_data)
             elif choice == "2":
-                enroll_in_course()
+                view_courses(courses_data)
+                user["courses"].append(enroll_in_course(courses_data, user))
             elif choice == "3":
-                pass
+                view_courses(user["courses"])
             elif choice == "4":
                 check_grades(grades_data, user["email"])
             elif choice == "5":
