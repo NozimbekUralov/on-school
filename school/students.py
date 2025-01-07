@@ -1,9 +1,8 @@
 from os import system
 
 
-def register_student(
-        students_data: list[dict],
-    ) -> dict | None:
+
+def register_student() -> dict | None:
     """
     Registers a new student by collecting their name, email, and password, 
     and stores the information in the students_data dictionary.
@@ -21,18 +20,17 @@ def register_student(
 
         if password == confirm_password:
             data = {
-                "id": len(students_data)+1,
+                "id": "id",
                 "name": name,
                 "email": email,
-                "password": password
+                "password": password,
+                "courses": []
             }
 
-            students_data.append(data)
             system('clear')
             print("\nYou successfully registered!")
 
             return data
-
 
         print("Your passwords did not match. Please try again!")
     
@@ -55,25 +53,24 @@ def login_student(
     password = input("Enter your password: ")
 
     for student in students_data:
-        if student['email'] == email and student['password'] == password:
+        if student["email"] == email and student["password"] == password:
             system('clear')
             return students_data[students_data.index(student)]
-        else:
-            system('clear')
-            print(
-                f"\nYou have not registered yet.\nPlease register first then try again.\n"
-            )    
+
+    system('clear')
+    print(
+        f"\nYou have not registered yet.\nPlease register first then try again.\n"
+    )    
         
 
-def logout(user: dict) -> None:
+def logout() -> None:
     system('clear')
     print("\nLogging out...!\n")
-    user.clear()
+
 
 def enroll_in_course(
     courses_data: list[dict[str, str]], 
-    students_data: dict[str, dict[str, list[str]]], 
-    student_email: str
+    user: dict[str, dict[str, list[str]]],
 ) -> None:
     """
     Allows a student to enroll in a course by selecting from the available courses. 
@@ -85,4 +82,4 @@ def enroll_in_course(
                                and their details (including enrolled courses) are stored as values.
         student_email (str): The email of the student who is enrolling.
     """
-    pass
+    
