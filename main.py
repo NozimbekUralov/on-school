@@ -25,11 +25,13 @@ def main() -> None:
     to interact with courses and check grades.
     """
 
-    user = {"id": 0, "name": "John", "email": "email@example.com", "password":"12345678"}
+    user = {}
 
 
     students_data = [
-        {"id": 0, "name": "John", "email": "email@example.com", "password": "12345678"}
+        {"id": 0, "name": "John", "email": "email@example.com", "password": "12345678", "courses": []},
+        {"id": 1, "name": "nozim", "email": "n@e.c", "password": "12345678", "courses": []},
+        
     ]
 
     courses_data = [
@@ -53,6 +55,8 @@ def main() -> None:
         (5, "Logout")
     ]
 
+    system('clear')
+
     while True:
 
         while not user:
@@ -62,7 +66,8 @@ def main() -> None:
             choice = input("\nSelect an option: ")
 
             if choice == "1":
-                user = register_student(students_data)
+                user = register_student()
+                students_data.append(user)
             elif choice == "2":
                 user = login_student(students_data)
             elif choice == "3":
@@ -81,13 +86,13 @@ def main() -> None:
             if choice == "1":
                 view_courses(courses_data)
             elif choice == "2":
-                pass
+                enroll_in_course()
             elif choice == "3":
                 pass
             elif choice == "4":
                 check_grades(grades_data, user["email"])
             elif choice == "5":
-                logout(user)
+                user = logout()
             else:
                 print(f"Unknown option: '{choice}'. Please try again!")
             
