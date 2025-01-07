@@ -1,4 +1,8 @@
-def filter_courses_by_duration(courses_data: list[dict[str, str]], min_duration: int, max_duration: int) -> list[dict[str, str]]:
+def filter_courses_by_duration(
+        courses_data: list[dict[str, str]],
+        min_duration: int,
+        max_duration: int
+    ) -> list[dict[str, str]]:
     """
     Filters the list of courses based on the course duration, 
     including courses that fall within the specified duration range.
@@ -13,7 +17,10 @@ def filter_courses_by_duration(courses_data: list[dict[str, str]], min_duration:
     """
     pass
 
-def search_courses_by_name(courses_data: list[dict[str, str]], keyword: str) -> list[dict[str, str]]:
+def search_courses_by_name(
+        courses_data: list[dict[str, str]], 
+        keyword: str
+    ) -> list[dict[str, str]]:
     """
     Searches for courses by name that contain a specific keyword.
 
@@ -26,7 +33,11 @@ def search_courses_by_name(courses_data: list[dict[str, str]], keyword: str) -> 
     """
     pass
 
-def filter_courses_by_price(courses_data: list[dict[str, str]], min_price: float, max_price: float) -> list[dict[str, str]]:
+def filter_courses_by_price(
+        courses_data: list[dict[str, str]], 
+        min_price: float,
+        max_price: float
+    ) -> list[dict[str, str]]:
     """
     Filters the list of courses based on the course price, including courses that fall within 
     the specified price range.

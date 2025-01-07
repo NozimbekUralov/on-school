@@ -1,3 +1,7 @@
+from os import system
+
+from formats.cources import courses
+
 def view_courses(courses_data: list[dict[str, str]]) -> None:
     """
     Displays a list of available courses with details such as course name, duration, 
@@ -7,4 +11,15 @@ def view_courses(courses_data: list[dict[str, str]]) -> None:
         courses_data (list): A list of dictionaries containing course details. 
                               Each dictionary has keys like 'course_name', 'instructor', and 'duration'.
     """
-    pass
+    system('clear')
+    print("\nCourses:")
+    for course in courses_data:
+        print(
+            "-"*30,
+            courses.format(
+                course=course['course_name'],
+                instructor=course['instructor'],
+                duration=course['duration'],
+                price=course['price']
+            )
+        )

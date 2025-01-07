@@ -1,27 +1,74 @@
-def register_student(students_data: dict[str, dict[str, str]]) -> None:
+from os import system
+
+
+def register_student(
+        students_data: list[dict],
+    ) -> dict | None:
     """
     Registers a new student by collecting their name, email, and password, 
     and stores the information in the students_data dictionary.
 
     Args:
-        students_data (dict): A dictionary where student emails are keys 
-                               and their details (name and password) are stored as values.
+        students_data (dict): 
+            A dictionary where student emails are keys 
+            and their details (name and password) are stored as values.
     """
-    pass
+    while True:
+        name = input("Enter your name: ")
+        email = input("Enter your email: ")
+        password = input("Enter your password: ")
+        confirm_password = input("Confirm your password: ")
 
-def login_student(students_data: dict[str, dict[str, str]]) -> str | None:
+        if password == confirm_password:
+            data = {
+                "id": len(students_data)+1,
+                "name": name,
+                "email": email,
+                "password": password
+            }
+
+            students_data.append(data)
+            system('clear')
+            print("\nYou successfully registered!")
+
+            return data
+
+
+        print("Your passwords did not match. Please try again!")
+    
+def login_student(
+        students_data: list[dict],
+    ) -> dict | None:
     """
     Allows a student to log in by entering their email and password. 
     If the login is successful, it returns the student's name.
 
     Args:
-        students_data (dict): A dictionary where student emails are keys 
-                               and their details (name and password) are stored as values.
+        students_data (dict): 
+            A dictionary where student emails are keys 
+            and their details (name and password) are stored as values.
 
     Returns:
-        str: The student's name if login is successful, else None.
+        str: successful else None.
     """
-    pass
+    email = input("Enter your email: ")
+    password = input("Enter your password: ")
+
+    for student in students_data:
+        if student['email'] == email and student['password'] == password:
+            system('clear')
+            return students_data[students_data.index(student)]
+        else:
+            system('clear')
+            print(
+                f"\nYou have not registered yet.\nPlease register first then try again.\n"
+            )    
+        
+
+def logout(user: dict) -> None:
+    system('clear')
+    print("\nLogging out...!\n")
+    user.clear()
 
 def enroll_in_course(
     courses_data: list[dict[str, str]], 
